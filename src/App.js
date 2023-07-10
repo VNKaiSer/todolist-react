@@ -6,7 +6,6 @@ function Task({ task }) {
   return (
     <div className='TaskName' style={{
       padding: 5,
-      display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
@@ -20,9 +19,41 @@ function Task({ task }) {
       marginRight: 'auto',
       fontSize: 20,
       fontWeight: 'bold',
+      position: 'relative',
       
     }}>
       {task}
+
+      <button
+        style={{
+          backgroundColor: 'red',
+          color: 'white',
+          borderRadius: 8,
+          border: '2px solid black',
+          padding: 5,
+          margin: 8,
+          fontSize: 15,
+          position: 'absolute',
+          top: -3.8,
+          right: 60,
+        }}  
+      > Delete </button>
+      <button
+        style={{
+          backgroundColor: 'green',
+          color: 'white',
+          borderRadius: 8,
+          border: '2px solid black',
+          padding: 5,
+          margin: 8,
+          fontSize: 15,
+          position: 'absolute',
+          top: -3.8,
+          right: -3,
+
+          
+        }}
+      > Done </button>
     </div>
   );
 }
@@ -33,6 +64,9 @@ function App() {
   const [task, setTask] = useState('');
   console.log(tasks);
   function handleAddTask(){
+    if(task === ''){
+      return
+    }
     if(tasks.includes(task)){
       return
     }
@@ -46,10 +80,26 @@ function App() {
         value={task}
         onChange={(e) => setTask(e.target.value)}
         placeholder="Add a task" 
+        style={{ 
+          padding: 5,
+          margin: 8,
+          borderRadius: 8,
+          border: '2px solid black',
+          fontSize: 20,
+          
+         }}
       /> 
       <button 
         onClick={handleAddTask}
-      >Add</button>
+        style={{ 
+          padding: 5,
+          margin: 8,
+          borderRadius: 8,
+          border: '1px solid black',
+          fontSize: 20,
+        
+         }}
+      >Add Task</button>
         {
           tasks.map((task , index ) => {
             return (
