@@ -60,7 +60,11 @@ function Task({ task }) {
 
 
 function App() {
-  const [tasks, addTask] = useState([])
+  
+  const [tasks, addTask] = useState(() =>{
+    const data = JSON.parse(localStorage.getItem('tasks'))
+    return data ? data : []
+  })
   const [task, setTask] = useState('');
   console.log(tasks);
   function handleAddTask(){
@@ -71,6 +75,8 @@ function App() {
       return
     }
     addTask(prev => [...prev, task]);
+    const jsonJob = JSON.stringify(tasks);
+    localStorage.setItem('tasks', jsonJob);
   }
   return (
     <div className="App" >
