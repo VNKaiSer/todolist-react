@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 
-
+// component task
 function Task({ task }) {
   return (
     <div className='TaskName' style={{
@@ -59,6 +59,7 @@ function Task({ task }) {
 }
 
 
+// main app
 function App() {
   
   const [tasks, addTask] = useState(() =>{
@@ -67,6 +68,8 @@ function App() {
   })
   const [task, setTask] = useState('');
   console.log(tasks);
+  const jsonJob = JSON.stringify(tasks);
+  localStorage.setItem('tasks', jsonJob);
   function handleAddTask(){
     if(task === ''){
       return
@@ -75,8 +78,7 @@ function App() {
       return
     }
     addTask(prev => [...prev, task]);
-    const jsonJob = JSON.stringify(tasks);
-    localStorage.setItem('tasks', jsonJob);
+
   }
   return (
     <div className="App" >
